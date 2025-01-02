@@ -1,6 +1,8 @@
+import HomePage from "./pages/HomePage";
+
 /* eslint-disable react/react-in-jsx-scope */
 function App() {
-  return <div className="text-2xl text-red-300">sofiane</div>;
+  return <HomePage />;
 }
 
 export default App;
