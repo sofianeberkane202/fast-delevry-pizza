@@ -2,7 +2,31 @@
 import NavBar from "../ui/NavBar";
 
 function HomePage() {
-  return <NavBar />;
+  return (
+    <div className="grid h-screen grid-rows-[auto_1fr] bg-stone-100">
+      <NavBar />
+      <Content />
+    </div>
+  );
+}
+
+function Content() {
+  return (
+    <main className="relative text-center">
+      <div className="absolute left-1/2 top-16 w-[80%] -translate-x-1/2">
+        <h1 className="mb-8 font-mono text-3xl font-semibold tracking-wide">
+          <span>The best pizza.</span>
+          <br />
+          <span className="text-yellow-500">Straight out of the oven, straight to you.</span>
+        </h1>
+        <p className="mb-4 tracking-widest">👋 Welcome! Please start by telling us your name:</p>
+        <form className="flex flex-col items-center gap-4">
+          <input type="text" placeholder="Your full name" className="w-72 rounded-full px-4 py-3 text-sm" />
+          <button>start ordering</button>
+        </form>
+      </div>
+    </main>
+  );
 }
 
 export default HomePage;
