@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint src --ext .js,.jsx",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "server": "json-server --watch Data/data.json --port 8000"
   },
   "dependencies": {
     "react": "^18.3.1",
