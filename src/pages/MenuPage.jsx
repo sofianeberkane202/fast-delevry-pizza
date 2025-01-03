@@ -1,6 +1,7 @@
 /* eslint-disable react/react-in-jsx-scope */
 import PropTypes from "prop-types";
 import { useLoaderData } from "react-router-dom";
+import Button from "../ui/Button";
 
 // const fakeDataMenu = [
 //   {
@@ -40,7 +41,7 @@ import { useLoaderData } from "react-router-dom";
 function MenuPage() {
   const pizzas = useLoaderData();
   return (
-    <ul>
+    <ul className="divide-y-[1.5px] divide-stone-200 px-6 py-2">
       {pizzas.map((pizza, i) => (
         <MenuItem key={i} pizza={pizza} />
       ))}
@@ -50,23 +51,24 @@ function MenuPage() {
 
 function MenuItem({ pizza }) {
   return (
-    <li className="mx-auto flex w-full max-w-[800px] items-center gap-4 px-6 py-2">
-      <img className="w-24" src={pizza.imageUrl} alt={pizza.name} />
-      <div>
-        <p>{pizza.name}</p>
-        <ul className="flex items-center gap-2">
-          {pizza.ingredients.map((ing, i) => (
-            <Ingredient key={i} ing={ing} />
-          ))}
-        </ul>
-        <p>&euro;{pizza.unitPrice}</p>
+    <li className="mx-auto flex w-full max-w-[800px] items-center justify-between py-2">
+      <div className="flex gap-4">
+        <img className="h-24 w-24" src={pizza.imageUrl} alt={pizza.name} />
+
+        <div className="grid grid-rows-[auto_auto_1fr]">
+          <p className="text-normal pb-2 font-semibold capitalize">{pizza.name}</p>
+
+          <p className="text-sm italic text-stone-500">
+            {pizza.ingredients.map((ing) => ing.slice(0, 1).toUpperCase() + ing.slice(1)).join(", ")}
+          </p>
+
+          <p className="flex items-end">&euro;{Number(pizza.unitPrice).toFixed(2)}</p>
+        </div>
       </div>
+
+      <Button>Add to cart</Button>
     </li>
   );
-}
-
-function Ingredient({ ing }) {
-  return <li>{ing}</li>;
 }
 
 export async function loader() {
@@ -87,8 +89,4 @@ MenuItem.propTypes = {
     ingredients: PropTypes.array,
     soldOut: PropTypes.bool,
   }).isRequired,
-};
-
-Ingredient.propTypes = {
-  ing: PropTypes.string,
 };
