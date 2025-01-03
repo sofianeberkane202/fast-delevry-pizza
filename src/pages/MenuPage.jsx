@@ -51,7 +51,7 @@ function MenuPage() {
 
 function MenuItem({ pizza }) {
   return (
-    <li className="mx-auto flex w-full max-w-[800px] items-center justify-between py-2">
+    <li className="container flex items-center justify-between py-2">
       <div className="flex gap-4">
         <img className="h-24 w-24" src={pizza.imageUrl} alt={pizza.name} />
 
@@ -66,7 +66,7 @@ function MenuItem({ pizza }) {
         </div>
       </div>
 
-      <Button>Add to cart</Button>
+      <Button type="primary">Add to cart</Button>
     </li>
   );
 }
