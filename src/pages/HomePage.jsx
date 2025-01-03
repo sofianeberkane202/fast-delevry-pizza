@@ -1,11 +1,13 @@
 /* eslint-disable react/react-in-jsx-scope */
 import NavBar from "../ui/NavBar";
+import TotalPriceAndQuantity from "../ui/TotalPriceAndQuantity";
 
 function HomePage() {
   return (
-    <div className="grid h-screen grid-rows-[auto_1fr] bg-stone-100">
+    <div className="grid h-screen grid-rows-[auto_1fr_auto] bg-stone-100">
       <NavBar />
       <Content />
+      <TotalPriceAndQuantity />
     </div>
   );
 }
