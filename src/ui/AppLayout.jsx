@@ -8,7 +8,9 @@ function AppLayout() {
     <div className="grid h-screen grid-rows-[auto_1fr_auto] bg-stone-100">
       <NavBar />
 
-      <Outlet />
+      <div className="overflow-y-auto">
+        <Outlet />
+      </div>
 
       <TotalPriceAndQuantity />
     </div>

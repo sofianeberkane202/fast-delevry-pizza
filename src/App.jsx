@@ -5,6 +5,8 @@ import CartPage from "./pages/CartPage";
 import OrderPage from "./pages/OrderPage";
 import AppLayout from "./ui/AppLayout";
 
+import { loader as loaderMenu } from "./pages/MenuPage";
+
 /* eslint-disable react/react-in-jsx-scope */
 function App() {
   const router = createBrowserRouter([
@@ -18,6 +20,7 @@ function App() {
         {
           path: "menu",
           element: <MenuPage />,
+          loader: loaderMenu,
         },
         {
           path: "cart",
