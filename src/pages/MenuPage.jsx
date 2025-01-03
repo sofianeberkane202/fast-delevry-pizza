@@ -52,21 +52,24 @@ function MenuPage() {
 function MenuItem({ pizza }) {
   return (
     <li className="container flex items-center justify-between py-2">
-      <div className="flex gap-4">
+      <div className="flex w-full gap-4">
         <img className="h-24 w-24" src={pizza.imageUrl} alt={pizza.name} />
 
-        <div className="grid grid-rows-[auto_auto_1fr]">
+        <div className="grid flex-1 grid-rows-[auto_auto_1fr]">
           <p className="text-normal pb-2 font-semibold capitalize">{pizza.name}</p>
 
           <p className="text-sm italic text-stone-500">
             {pizza.ingredients.map((ing) => ing.slice(0, 1).toUpperCase() + ing.slice(1)).join(", ")}
           </p>
 
-          <p className="flex items-end">&euro;{Number(pizza.unitPrice).toFixed(2)}</p>
+          <div className="flex items-center justify-between">
+            <p className="flex items-end">&euro;{Number(pizza.unitPrice).toFixed(2)}</p>
+            <Button type="small" style={"px-4 py-2 text-xs"}>
+              Add to cart
+            </Button>
+          </div>
         </div>
       </div>
-
-      <Button type="primary">Add to cart</Button>
     </li>
   );
 }

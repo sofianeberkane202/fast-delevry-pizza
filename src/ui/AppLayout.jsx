@@ -11,7 +11,7 @@ function AppLayout() {
     <div className="relative grid h-screen grid-rows-[auto_1fr_auto] bg-stone-100">
       <NavBar />
       {state === "loading" && <Loader />}
-      <div className="overflow-y-auto">{state === "idle" && <Outlet />}</div>
+      <div className="container overflow-y-auto">{state === "idle" && <Outlet />}</div>
 
       <TotalPriceAndQuantity />
     </div>

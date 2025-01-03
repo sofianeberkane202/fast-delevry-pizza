@@ -29,7 +29,7 @@ const fakeCart = [
 function CartPage() {
   const cart = fakeCart;
   return (
-    <div className="container mt-4">
+    <div className="mt-4">
       <Button to={"/menu"} type={"link"} style={"text-sm"}>
         &larr; Back to menu
       </Button>
