@@ -11,14 +11,14 @@
 
 @font-face {
   font-family: "Roboto Mono";
-  src: url("./assets/fonts/RobotoMono-Bold.ttf") format("truetype");
+  src: url("./fonts/static/RobotoMono-Bold.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Roboto Mono";
-  src: url("./assets/fonts/RobotoMono-SemiBold.ttf") format("truetype");
+  src: url("./fonts/static/RobotoMono-SemiBold.ttf") format("truetype");
   font-weight: 600;
   font-style: normal;
 }
