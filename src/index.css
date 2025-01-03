@@ -23,6 +23,13 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: "Roboto Mono";
+  src: url("./fonts/static/RobotoMono-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
 /* HTML: <div class="loader"></div> */
 .loader {
   width: 45px;

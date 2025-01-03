@@ -6,7 +6,7 @@ import TotalPriceAndQuantity from "./TotalPriceAndQuantity";
 import Loader from "./Loader";
 function AppLayout() {
   const { state } = useNavigation();
-  console.log(state);
+
   return (
     <div className="relative grid h-screen grid-rows-[auto_1fr_auto] bg-stone-100">
       <NavBar />
