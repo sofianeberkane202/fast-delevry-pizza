@@ -6,7 +6,7 @@ function Button({ type, style, to, children }) {
   text-sm sm:text-base font-semibold uppercase text-stone-700 
   transition-colors duration-300 hover:bg-yellow-500`;
 
-  const secondaryBase = `rounded-full text-base font-semibold uppercase
+  const secondaryBase = `rounded-full text-sm sm:text-base font-semibold uppercase
   bg-stone-50 text-stone-400 transition-colors duration-300
   border-2 border-stone-300 px-6 py-2
   hover:bg-stone-200 hover:text-stone-700`;
