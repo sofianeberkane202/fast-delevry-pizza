@@ -4,11 +4,13 @@ import { Link } from "react-router-dom";
 function TotalPriceAndQuantity() {
   return (
     <div className="flex items-center justify-between bg-stone-800 px-6 py-4 font-mono font-medium uppercase text-stone-100">
-      <div className="flex gap-4">
+      <div className="flex gap-4 text-sm sm:text-base">
         <p>1 pizzas</p>
         <p>$16.00</p>
       </div>
-      <Link to={"/cart"}> open cart &rarr; </Link>
+      <Link to={"/cart"} className="text-sm sm:text-base">
+        open cart &rarr;
+      </Link>
     </div>
   );
 }
