@@ -2,7 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
+.input {
+  @apply flex-1 rounded-full border border-stone-200 px-4 text-sm focus:outline-none focus:ring focus:ring-yellow-400 sm:py-3;
+}
+
+/* @font-face {
   font-family: "Roboto Mono";
   src: url("./fonts/static/RobotoMono-Regular.ttf") format("truetype");
   font-weight: 400;
@@ -28,7 +32,7 @@
   src: url("./fonts/static/RobotoMono-Medium.ttf") format("truetype");
   font-weight: 500;
   font-style: normal;
-}
+} */
 
 /* HTML: <div class="loader"></div> */
 .loader {
