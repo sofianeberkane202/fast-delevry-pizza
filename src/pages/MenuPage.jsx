@@ -41,7 +41,7 @@ import Button from "../ui/Button";
 function MenuPage() {
   const pizzas = useLoaderData();
   return (
-    <ul className="divide-y-[1.5px] divide-stone-200 px-6 py-2">
+    <ul className="container divide-y-[1.5px] divide-stone-200">
       {pizzas.map((pizza, i) => (
         <MenuItem key={i} pizza={pizza} />
       ))}
@@ -51,20 +51,20 @@ function MenuPage() {
 
 function MenuItem({ pizza }) {
   return (
-    <li className="container flex items-center justify-between py-2">
-      <div className="flex w-full gap-4">
+    <li className="flex items-center justify-between py-2 sm:container">
+      <div className="flex w-full gap-2 sm:gap-4">
         <img className="h-24 w-24" src={pizza.imageUrl} alt={pizza.name} />
 
-        <div className="grid flex-1 grid-rows-[auto_auto_1fr]">
-          <p className="text-normal pb-2 font-semibold capitalize">{pizza.name}</p>
+        <div className="grid flex-1 grid-rows-[auto_auto_1fr] gap-2 sm:gap-0">
+          <p className="text-normal font-semibold capitalize sm:pb-2">{pizza.name}</p>
 
-          <p className="text-sm italic text-stone-500">
+          <p className="text-xs italic text-stone-500 sm:text-sm">
             {pizza.ingredients.map((ing) => ing.slice(0, 1).toUpperCase() + ing.slice(1)).join(", ")}
           </p>
 
-          <div className="flex items-center justify-between">
-            <p className="flex items-end">&euro;{Number(pizza.unitPrice).toFixed(2)}</p>
-            <Button type="small" style={"px-4 py-2 text-xs"}>
+          <div className="flex flex-col justify-between gap-1 sm:flex-row sm:items-center">
+            <p className="flex items-end font-bold">&euro;{Number(pizza.unitPrice).toFixed(2)}</p>
+            <Button type="small" style={"rounded py-3 w-full sm:w-fit sm:px-4 sm:py-2 sm:text-sm"}>
               Add to cart
             </Button>
           </div>
