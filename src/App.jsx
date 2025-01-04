@@ -27,7 +27,7 @@ function App() {
           element: <CartPage />,
         },
         {
-          path: "order",
+          path: "order/new",
           element: <OrderPage />,
         },
       ],
