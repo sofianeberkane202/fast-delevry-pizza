@@ -2,7 +2,7 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 function Button({ type, style, to, children }) {
-  const base = `rounded-full bg-yellow-400
+  const base = `sm:rounded-full bg-yellow-400
   text-sm sm:text-base font-semibold uppercase text-stone-700 
   transition-colors duration-300 hover:bg-yellow-500`;
 
