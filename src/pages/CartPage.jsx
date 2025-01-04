@@ -40,7 +40,9 @@ function CartPage() {
         ))}
       </ul>
       <div className="mt-4 space-x-3">
-        <Button type={"primary"}>Order pizzas</Button>
+        <Button to={"/order/new"} type={"primary"}>
+          Order pizzas
+        </Button>
         <Button type={"secondary"}>clear cart</Button>
       </div>
     </div>
