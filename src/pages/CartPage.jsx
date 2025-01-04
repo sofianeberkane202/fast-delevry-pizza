@@ -6,7 +6,7 @@ import Button from "../ui/Button";
 const fakeCart = [
   {
     pizzaId: 1,
-    name: "Margherita",
+    name: "Margherita Margherita",
     quantity: 1,
     unitPrice: 12,
     totalPrice: 12,
@@ -51,15 +51,14 @@ function CartPage() {
 
 function CartItem({ item }) {
   return (
-    <li className="flex items-center justify-between py-4">
-      <p className="text-base">
-        <span>{item.quantity}x </span>
-        <span>{item.name}</span>
+    <li className="flex items-center gap-4 py-4 sm:justify-between">
+      <p className="line-clamp-1 basis-40 text-sm sm:flex-1 sm:text-base">
+        {item.quantity}x {item.name}
       </p>
 
-      <div className="flex items-center gap-2">
+      <div className="flex flex-1 items-center justify-end gap-2 sm:flex-grow-0">
         <p className="text-sm font-semibold">&euro;{Number(item.unitPrice).toFixed(2)}</p>
-        <Button type="small" style="px-6 py-2.5 text-xs font-sans">
+        <Button type="small" style="px-4 py-1.5  sm:px-6 sm:py-2.5 text-xs font-sans">
           Delete
         </Button>
       </div>
