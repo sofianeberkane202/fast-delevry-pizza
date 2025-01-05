@@ -2,6 +2,7 @@
 import PropTypes from "prop-types";
 import { useLoaderData } from "react-router-dom";
 import Button from "../ui/Button";
+import QuantityMange from "../ui/QuantityMange";
 
 // const fakeDataMenu = [
 //   {
@@ -53,20 +54,30 @@ function MenuItem({ pizza }) {
   return (
     <li className="flex items-center justify-between py-2 sm:container">
       <div className="flex w-full gap-2 sm:gap-4">
-        <img className="h-24 w-24" src={pizza.imageUrl} alt={pizza.name} />
+        <div className="flex w-24 flex-wrap content-between gap-2">
+          <img className="w-full" src={pizza.imageUrl} alt={pizza.name} />
+          <div className="xs:hidden flex h-8 w-full">
+            <QuantityMange style={"justify-between w-full"} buttonStyle={"rounded w-8 h-8 text-sm"} />
+          </div>
+        </div>
 
         <div className="grid flex-1 grid-rows-[auto_auto_1fr] gap-2 sm:gap-0">
           <p className="text-normal font-semibold capitalize sm:pb-2">{pizza.name}</p>
 
-          <p className="text-xs italic text-stone-500 sm:text-sm">
+          <p className="line-clamp-3 text-xs italic text-stone-500 sm:text-sm">
             {pizza.ingredients.map((ing) => ing.slice(0, 1).toUpperCase() + ing.slice(1)).join(", ")}
           </p>
 
-          <div className="flex flex-col justify-between gap-1 sm:flex-row sm:items-center">
+          <div className="xs:flex-row xs:items-center flex flex-col justify-between gap-1">
             <p className="flex items-end font-bold">&euro;{Number(pizza.unitPrice).toFixed(2)}</p>
-            <Button type="small" style={"rounded py-3 w-full sm:w-fit sm:px-4 sm:py-2 sm:text-sm"}>
-              Add to cart
-            </Button>
+            <div className="flex items-center gap-2">
+              <div className="xs:block hidden">
+                <QuantityMange buttonStyle={"rounded w-8 h-8 text-sm"} />
+              </div>
+              <Button type="small" style={"py-2 px-4 sm:py-3 md:px-6"}>
+                Add to cart
+              </Button>
+            </div>
           </div>
         </div>
       </div>
