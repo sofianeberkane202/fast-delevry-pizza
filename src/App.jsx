@@ -1,11 +1,12 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import HomePage from "./pages/HomePage";
-import MenuPage from "./pages/MenuPage";
-import CartPage from "./pages/CartPage";
-import OrderPage from "./pages/OrderPage";
+import HomePage from "./ui/HomePage";
+import MenuPage from "./features/Menu/MenuPage";
+import CartPage from "./features/Cart/CartPage";
+import OrderPage from "./features/Order/OrderPage";
+import CreateOrder from "./features/Order/CreateOrder";
 import AppLayout from "./ui/AppLayout";
 
-import { loader as loaderMenu } from "./pages/MenuPage";
+import { loader as loaderMenu } from "./features/Menu/MenuPage";
 
 /* eslint-disable react/react-in-jsx-scope */
 function App() {
@@ -28,7 +29,7 @@ function App() {
         },
         {
           path: "order/new",
-          element: <OrderPage />,
+          element: <CreateOrder />,
         },
       ],
     },

@@ -1,7 +1,7 @@
-import Button from "../ui/Button";
+import Button from "../../ui/Button";
 
 /* eslint-disable react/react-in-jsx-scope */
-function OrderPage() {
+function CreateOrder() {
   return (
     <div className="mt:3 py-2 sm:mt-4">
       <h1 className="mb-4 text-lg font-semibold sm:mb-6 sm:text-xl">Ready to order? Let&apos;s go!</h1>
@@ -63,4 +63,4 @@ function OrderPage() {
   );
 }
 
-export default OrderPage;
+export default CreateOrder;
