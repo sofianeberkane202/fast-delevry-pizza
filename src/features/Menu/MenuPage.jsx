@@ -1,6 +1,7 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { useLoaderData } from "react-router-dom";
 import MenuItem from "./MenuItem";
+import { getPizzas } from "../../services/servicesRestaurantApi";
 
 function MenuPage() {
   const pizzas = useLoaderData();
@@ -14,9 +15,7 @@ function MenuPage() {
 }
 
 export async function loader() {
-  const response = await fetch("http://localhost:8000/data");
-  if (!response.ok) throw new Error("Faild to fetch data!");
-  const data = response.json();
+  const data = await getPizzas();
   return data;
 }
 
