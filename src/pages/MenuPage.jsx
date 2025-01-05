@@ -64,7 +64,7 @@ function MenuItem({ pizza }) {
 
           <div className="flex flex-col justify-between gap-1 sm:flex-row sm:items-center">
             <p className="flex items-end font-bold">&euro;{Number(pizza.unitPrice).toFixed(2)}</p>
-            <Button type="small" style={"rounded py-3 w-full sm:w-fit sm:px-4 sm:py-2 sm:text-sm"}>
+            <Button type="small" style={"rounded sm:rounded-full py-3 w-full sm:w-fit sm:px-4 sm:py-2 sm:text-sm"}>
               Add to cart
             </Button>
           </div>
