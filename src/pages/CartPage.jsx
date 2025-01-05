@@ -56,9 +56,12 @@ function CartItem({ item }) {
         {item.quantity}x {item.name}
       </p>
 
-      <div className="flex flex-1 items-center justify-end gap-2 sm:flex-grow-0">
-        <p className="text-sm font-semibold">&euro;{Number(item.unitPrice).toFixed(2)}</p>
-        <Button type="small" style="px-4 py-1.5  sm:px-6 sm:py-2.5 text-xs font-sans">
+      <div className="flex flex-1 items-center justify-end gap-3 sm:flex-grow-0 sm:gap-6">
+        <p className="xs:text-sm text-[12px] font-semibold">&euro;{Number(item.unitPrice).toFixed(2)}</p>
+        {/* " xs:text-sm rounded-none sm:rounded-full w-6 h-6 sm:w-8 sm:h-8 flex items-center justify-center"; */}
+        <QuantityMange buttonStyle={"text-[12px] rounded-none xs:rounded-full w-6 h-6 xs:h-8 xs:w-8 "} />
+
+        <Button type="small" style="px-4 py-1.5 sm:px-6 sm:py-2.5 sm:text-xs hidden sm:inline-block">
           Delete
         </Button>
       </div>
