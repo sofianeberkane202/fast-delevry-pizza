@@ -1,11 +1,11 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/HomePage";
-import MenuPage from "./pages/MenuPage";
+import MenuPage from "./features/Menu/MenuPage";
 import CartPage from "./pages/CartPage";
 import OrderPage from "./pages/OrderPage";
 import AppLayout from "./ui/AppLayout";
 
-import { loader as loaderMenu } from "./pages/MenuPage";
+import { loader as loaderMenu } from "./features/Menu/MenuPage";
 
 /* eslint-disable react/react-in-jsx-scope */
 function App() {
