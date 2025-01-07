@@ -4,7 +4,7 @@ import QuantityMange from "../../ui/QuantityMange";
 import Button from "../../ui/Button";
 
 function CartItem({ item }) {
-  const { name, unitPrice, quantity } = item;
+  const { pizzaId, name, unitPrice, quantity } = item;
   return (
     <li className="flex items-center gap-4 py-4 sm:justify-between">
       <p className="line-clamp-1 basis-40 text-[12px] xs:flex-1 xs:text-sm sm:text-base">
@@ -15,6 +15,7 @@ function CartItem({ item }) {
         <p className="text-[12px] font-semibold xs:text-sm">&euro;{Number(unitPrice).toFixed(2)}</p>
         {/* " xs:text-sm rounded-none sm:rounded-full w-6 h-6 sm:w-8 sm:h-8 flex items-center justify-center"; */}
         <QuantityMange
+          pizzaId={pizzaId}
           quantity={quantity}
           buttonStyle={"text-[12px] rounded-none xs:rounded-full w-6 h-6 xs:h-8 xs:w-8 "}
         />

@@ -7,7 +7,6 @@ import { getCart } from "./reducerCartSlice";
 
 function CartPage() {
   const cart = useSelector((state) => getCart(state));
-  console.log(cart);
   return (
     <div className="mt-4">
       <Button to={"/menu"} type={"link"} style={"text-sm"}>
