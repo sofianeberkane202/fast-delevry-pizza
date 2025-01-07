@@ -1,33 +1,13 @@
 /* eslint-disable react/react-in-jsx-scope */
 
+import { useSelector } from "react-redux";
 import Button from "../../ui/Button";
 import CartItem from "./CartItem";
+import { getCart } from "./reducerCartSlice";
 
-const fakeCart = [
-  {
-    pizzaId: 1,
-    name: "Margherita Margherita",
-    quantity: 1,
-    unitPrice: 12,
-    totalPrice: 12,
-  },
-  {
-    pizzaId: 2,
-    name: "Romana",
-    quantity: 3,
-    unitPrice: 15,
-    totalPrice: 45,
-  },
-  {
-    pizzaId: 3,
-    name: "Prosciutto e Rucola",
-    quantity: 4,
-    unitPrice: 16,
-    totalPrice: 64,
-  },
-];
 function CartPage() {
-  const cart = fakeCart;
+  const cart = useSelector((state) => getCart(state));
+  console.log(cart);
   return (
     <div className="mt-4">
       <Button to={"/menu"} type={"link"} style={"text-sm"}>
