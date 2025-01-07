@@ -5,10 +5,11 @@ import { getPizzas } from "../../services/servicesRestaurantApi";
 
 function MenuPage() {
   const pizzas = useLoaderData();
+
   return (
     <ul className="container divide-y-[1.5px] divide-stone-200">
-      {pizzas.map((pizza, i) => (
-        <MenuItem key={i} pizza={pizza} />
+      {pizzas.map((pizza) => (
+        <MenuItem key={pizza.id} pizza={pizza} />
       ))}
     </ul>
   );
