@@ -33,7 +33,7 @@ const cartReducer = createSlice({
   name: "cart",
   reducers: {
     addToCart(state, action) {
-      // payload: pizzaId
+      // payload: cartItem
       state.cart.push(action.payload);
     },
 
@@ -67,6 +67,10 @@ const cartReducer = createSlice({
     },
   },
 });
+
+export function getCart(state) {
+  return state.cart.cart;
+}
 
 export const { addToCart, deleteCartItem, increaseQuantity, decreaseQuantity } = cartReducer.actions;
 
