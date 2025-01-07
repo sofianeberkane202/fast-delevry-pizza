@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import QuantityMange from "../../ui/QuantityMange";
 import Button from "../../ui/Button";
 import { useSelector } from "react-redux";
-import { getQuantity } from "../Cart/reducerCartSlice";
 import useCartActions from "../Cart/useCartActions";
+import { getQuantity } from "../Cart/reducerCartSlice";
 function MenuItem({ pizza }) {
   const item = useSelector((state) => getQuantity(state, +pizza.id));
 
