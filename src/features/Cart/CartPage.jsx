@@ -9,6 +9,8 @@ import CartEmpty from "./CartEmpty";
 function CartPage() {
   const cart = useSelector((state) => getCart(state));
 
+  const { name } = useSelector((state) => state.user);
+
   const dispatch = useDispatch();
 
   function handleClearCart() {
@@ -24,7 +26,9 @@ function CartPage() {
 
       {cart.length > 0 && (
         <>
-          <h2 className="mt-10 font-mono text-lg font-semibold tracking-wide">You cart, %Name%</h2>
+          <h2 className="mt-10 font-mono text-lg font-semibold tracking-wide">
+            You cart, <span className="uppercase">{name}</span>
+          </h2>
           <ul className="divide-y-2 divide-stone-200">
             {cart.map((item) => (
               <CartItem item={item} key={item.pizzaId} />
