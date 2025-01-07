@@ -1,7 +1,7 @@
 /* eslint-disable react/react-in-jsx-scope */
 
 import { useNavigate } from "react-router-dom";
-import Button from "../ui/Button";
+import Button from "./Button";
 function HomePage() {
   return <Content />;
 }
