@@ -2,9 +2,17 @@
 import PropTypes from "prop-types";
 import QuantityMange from "../../ui/QuantityMange";
 import Button from "../../ui/Button";
+import { useDispatch } from "react-redux";
+import { deleteCartItem } from "./reducerCartSlice";
 
 function CartItem({ item }) {
   const { pizzaId, name, unitPrice, quantity } = item;
+
+  const dispatch = useDispatch();
+
+  function handleDeleteCartItem() {
+    dispatch(deleteCartItem(pizzaId));
+  }
   return (
     <li className="flex items-center gap-4 py-4 sm:justify-between">
       <p className="line-clamp-1 basis-40 text-[12px] xs:flex-1 xs:text-sm sm:text-base">
@@ -20,7 +28,11 @@ function CartItem({ item }) {
           buttonStyle={"text-[12px] rounded-none xs:rounded-full w-6 h-6 xs:h-8 xs:w-8 "}
         />
 
-        <Button type="small" style="px-4 py-1.5 sm:px-6 sm:py-2.5 sm:text-xs hidden sm:inline-block">
+        <Button
+          handleState={handleDeleteCartItem}
+          type="small"
+          style="px-4 py-1.5 sm:px-6 sm:py-2.5 sm:text-xs hidden sm:inline-block"
+        >
           Delete
         </Button>
 
