@@ -1,7 +1,7 @@
 /* eslint-disable react/react-in-jsx-scope */
 import Button from "../ui/Button";
 import PropTypes from "prop-types";
-function QuantityMange({ style, buttonStyle }) {
+function QuantityMange({ style, buttonStyle, quantity }) {
   // eslint-disable-next-line no-unused-vars
   const baseButton = "xs:text-sm flex items-center justify-center";
 
@@ -10,7 +10,7 @@ function QuantityMange({ style, buttonStyle }) {
       <Button type={"small"} style={`${baseButton} ${buttonStyle}`}>
         -
       </Button>
-      <p className="xs:text-sm px-2 text-[12px] font-semibold sm:bg-transparent">10</p>
+      <p className="px-2 text-[12px] font-semibold xs:text-sm sm:bg-transparent">{quantity}</p>
       <Button type={"small"} style={`${baseButton} ${buttonStyle}`}>
         +
       </Button>
@@ -23,4 +23,5 @@ export default QuantityMange;
 QuantityMange.propTypes = {
   style: PropTypes.string,
   buttonStyle: PropTypes.string,
+  quantity: PropTypes.number,
 };
