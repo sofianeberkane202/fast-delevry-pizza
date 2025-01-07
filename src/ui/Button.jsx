@@ -1,7 +1,7 @@
 /* eslint-disable react/react-in-jsx-scope */
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-function Button({ type, style, to, children }) {
+function Button({ type, style, to, handleState, children }) {
   const base = `rounded-full bg-yellow-400 text-[12px]
   sm:text-sm tracking-wider font-semibold uppercase text-stone-700 
   transition-colors duration-300 hover:bg-yellow-500`;
@@ -27,7 +27,11 @@ function Button({ type, style, to, children }) {
       </Link>
     );
 
-  return <button className={buttonStyle[type]}>{children}</button>;
+  return (
+    <button className={buttonStyle[type]} onClick={handleState}>
+      {children}
+    </button>
+  );
 }
 
 Button.propTypes = {
@@ -35,6 +39,7 @@ Button.propTypes = {
   type: PropTypes.string,
   style: PropTypes.string,
   to: PropTypes.string,
+  handleState: PropTypes.func,
 };
 
 export default Button;
