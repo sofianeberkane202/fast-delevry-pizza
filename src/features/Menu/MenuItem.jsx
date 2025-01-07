@@ -2,14 +2,28 @@
 import PropTypes from "prop-types";
 import QuantityMange from "../../ui/QuantityMange";
 import Button from "../../ui/Button";
+import { useSelector } from "react-redux";
+import { getQuantity } from "../Cart/reducerCartSlice";
+import useCartActions from "../Cart/useCartActions";
 function MenuItem({ pizza }) {
+  const item = useSelector((state) => getQuantity(state, +pizza.id));
+
+  const { handleAddItemToCart, handleDeleteCartItem } = useCartActions({ newItem: pizza, id: +pizza.id });
+
   return (
     <li className="flex items-center justify-between py-2 sm:container">
       <div className="flex w-full gap-2 sm:gap-4">
         <div className="flex w-24 flex-wrap content-between gap-2">
           <img className="w-full" src={pizza.imageUrl} alt={pizza.name} />
           <div className="flex h-8 w-full xs:hidden">
-            <QuantityMange style={"justify-between w-full"} buttonStyle={"rounded w-8 h-8 text-sm"} />
+            {item?.quantity && (
+              <QuantityMange
+                pizzaId={+pizza.id}
+                quantity={item?.quantity}
+                style={"justify-between w-full"}
+                buttonStyle={"rounded w-8 h-8 text-sm"}
+              />
+            )}
           </div>
         </div>
 
@@ -24,11 +38,25 @@ function MenuItem({ pizza }) {
             <p className="flex items-end font-bold">&euro;{Number(pizza.unitPrice).toFixed(2)}</p>
             <div className="flex items-center gap-2">
               <div className="hidden xs:block">
-                <QuantityMange buttonStyle={"rounded w-8 h-8 text-sm"} />
+                {item?.quantity && (
+                  <QuantityMange
+                    pizzaId={+pizza.id}
+                    quantity={item?.quantity}
+                    buttonStyle={"rounded w-8 h-8 text-sm"}
+                  />
+                )}
               </div>
-              <Button type="small" style={"py-2 px-4 sm:py-3 md:px-6"}>
-                Add to cart
-              </Button>
+              <div>
+                {!item?.quantity ? (
+                  <Button handleState={handleAddItemToCart} type="small" style={"py-2 px-4 sm:py-3 md:px-6"}>
+                    Add to cart
+                  </Button>
+                ) : (
+                  <Button handleState={handleDeleteCartItem} type="small" style={"py-2 px-4 sm:py-3 md:px-6"}>
+                    delete
+                  </Button>
+                )}
+              </div>
             </div>
           </div>
         </div>
