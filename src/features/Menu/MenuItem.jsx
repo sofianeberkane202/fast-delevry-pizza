@@ -8,7 +8,7 @@ function MenuItem({ pizza }) {
       <div className="flex w-full gap-2 sm:gap-4">
         <div className="flex w-24 flex-wrap content-between gap-2">
           <img className="w-full" src={pizza.imageUrl} alt={pizza.name} />
-          <div className="xs:hidden flex h-8 w-full">
+          <div className="flex h-8 w-full xs:hidden">
             <QuantityMange style={"justify-between w-full"} buttonStyle={"rounded w-8 h-8 text-sm"} />
           </div>
         </div>
@@ -20,10 +20,10 @@ function MenuItem({ pizza }) {
             {pizza.ingredients.map((ing) => ing.slice(0, 1).toUpperCase() + ing.slice(1)).join(", ")}
           </p>
 
-          <div className="xs:flex-row xs:items-center flex flex-col justify-between gap-1">
+          <div className="flex flex-col justify-between gap-1 xs:flex-row xs:items-center">
             <p className="flex items-end font-bold">&euro;{Number(pizza.unitPrice).toFixed(2)}</p>
             <div className="flex items-center gap-2">
-              <div className="xs:block hidden">
+              <div className="hidden xs:block">
                 <QuantityMange buttonStyle={"rounded w-8 h-8 text-sm"} />
               </div>
               <Button type="small" style={"py-2 px-4 sm:py-3 md:px-6"}>
@@ -41,7 +41,7 @@ export default MenuItem;
 
 MenuItem.propTypes = {
   pizza: PropTypes.shape({
-    id: PropTypes.number,
+    id: PropTypes.string,
     name: PropTypes.string,
     unitPrice: PropTypes.number,
     imageUrl: PropTypes.string,
