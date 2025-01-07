@@ -2,17 +2,12 @@
 import PropTypes from "prop-types";
 import QuantityMange from "../../ui/QuantityMange";
 import Button from "../../ui/Button";
-import { useDispatch } from "react-redux";
-import { deleteCartItem } from "./reducerCartSlice";
+import useCartActions from "./useCartActions";
 
 function CartItem({ item }) {
   const { pizzaId, name, unitPrice, quantity } = item;
+  const { handleDeleteCartItem } = useCartActions({ id: pizzaId });
 
-  const dispatch = useDispatch();
-
-  function handleDeleteCartItem() {
-    dispatch(deleteCartItem(pizzaId));
-  }
   return (
     <li className="flex items-center gap-4 py-4 sm:justify-between">
       <p className="line-clamp-1 basis-40 text-[12px] xs:flex-1 xs:text-sm sm:text-base">
