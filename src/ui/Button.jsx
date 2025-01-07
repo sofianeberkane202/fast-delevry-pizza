@@ -35,7 +35,7 @@ function Button({ type, style, to, handleState, children }) {
 }
 
 Button.propTypes = {
-  children: PropTypes.string,
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   type: PropTypes.string,
   style: PropTypes.string,
   to: PropTypes.string,
