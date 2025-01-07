@@ -70,6 +70,14 @@ export function getQuantity(state, pizzaId) {
   return state.cart.cart.find((item) => item.pizzaId === pizzaId);
 }
 
+export function getNumberOfPizzasAdded(state) {
+  return state.cart.cart.map((item) => item.quantity).reduce((totalQuantity, quantity) => totalQuantity + quantity, 0);
+}
+
+export function getBillOfTotalPrice(state) {
+  return state.cart.cart.map((item) => item.totalPrice).reduce((total, price) => total + price, 0);
+}
+
 export const { addToCart, deleteCartItem, increaseQuantity, decreaseQuantity, clearCart } = cartReducer.actions;
 
 export default cartReducer.reducer;
