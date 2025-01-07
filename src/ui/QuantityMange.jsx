@@ -1,20 +1,12 @@
 /* eslint-disable react/react-in-jsx-scope */
-import { useDispatch } from "react-redux";
+import useCartActions from "../features/Cart/useCartActions";
 import Button from "../ui/Button";
 import PropTypes from "prop-types";
-import { decreaseQuantity, increaseQuantity } from "../features/Cart/reducerCartSlice";
 
 function QuantityMange({ style, buttonStyle, quantity, pizzaId }) {
-  const dispatch = useDispatch();
   const baseButton = "xs:text-sm flex items-center justify-center";
 
-  function handleDecreaseQuantity() {
-    dispatch(decreaseQuantity(pizzaId));
-  }
-
-  function handleIncreaseQuantity() {
-    dispatch(increaseQuantity(pizzaId));
-  }
+  const { handleDecreaseQuantity, handleIncreaseQuantity } = useCartActions({ id: pizzaId });
 
   return (
     <div className={`flex flex-row items-center sm:gap-2 ${style}`}>
