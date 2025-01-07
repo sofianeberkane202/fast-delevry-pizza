@@ -31,11 +31,7 @@ function CartItem({ item }) {
           Delete
         </Button>
 
-        <Button
-          type={"small"}
-          style={"h-5 w-5 bg-transparent px-0 py-0 hover:bg-transparent"}
-          handleState={handleDeleteCartItem}
-        >
+        <Button type={"small"} style={"block sm:hidden h-5 w-5 bg-transparent"} handleState={handleDeleteCartItem}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"
