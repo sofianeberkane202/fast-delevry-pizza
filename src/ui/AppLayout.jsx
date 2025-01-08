@@ -16,7 +16,7 @@ function AppLayout() {
       {state === "loading" && <Loader />}
       <div className="container overflow-y-auto">{state === "idle" && <Outlet />}</div>
 
-      {cart.length && <TotalPriceAndQuantity />}
+      {cart.length > 0 && <TotalPriceAndQuantity />}
     </div>
   );
 }
