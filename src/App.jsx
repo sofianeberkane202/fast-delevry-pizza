@@ -35,6 +35,10 @@ function App() {
           element: <CreateOrder />,
           action: formNewOrder,
         },
+        {
+          path: "order/:id",
+          element: <OrderPage />,
+        },
       ],
     },
     {
