@@ -3,7 +3,10 @@ import HomePage from "./ui/HomePage";
 import MenuPage from "./features/Menu/MenuPage";
 import CartPage from "./features/Cart/CartPage";
 import OrderPage from "./features/Order/OrderPage";
+
 import CreateOrder from "./features/Order/CreateOrder";
+import { action as formNewOrder } from "./features/Order/CreateOrder";
+
 import AppLayout from "./ui/AppLayout";
 
 import { loader as loaderMenu } from "./features/Menu/MenuPage";
@@ -30,6 +33,7 @@ function App() {
         {
           path: "order/new",
           element: <CreateOrder />,
+          action: formNewOrder,
         },
       ],
     },
