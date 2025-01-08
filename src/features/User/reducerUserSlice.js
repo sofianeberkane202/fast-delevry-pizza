@@ -15,6 +15,10 @@ const UserReducer = createSlice({
   },
 });
 
+export function getName(state) {
+  return state.user.name;
+}
+
 export const { createUser } = UserReducer.actions;
 
 export default UserReducer.reducer;
