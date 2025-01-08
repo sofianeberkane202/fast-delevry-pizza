@@ -22,7 +22,7 @@ function CreateUser() {
       <input
         type="text"
         placeholder="Your full name"
-        className="w-72 rounded-full px-4 py-3 text-sm"
+        className="w-72 rounded-full px-4 py-3 text-sm outline-none transition-all duration-200 focus:ring focus:ring-yellow-400"
         value={name}
         onChange={(e) => setName(e.target.value)}
       />
