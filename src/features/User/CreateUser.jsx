@@ -7,6 +7,7 @@ import { useState } from "react";
 /* eslint-disable react/react-in-jsx-scope */
 function CreateUser() {
   const userName = useSelector((state) => getName(state));
+  console.log(userName);
   const [name, setName] = useState("");
 
   const dispatch = useDispatch();
@@ -15,7 +16,7 @@ function CreateUser() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    dispatch(createUser(name));
+    if (!userName) dispatch(createUser(name));
 
     navigate("/menu");
   }
