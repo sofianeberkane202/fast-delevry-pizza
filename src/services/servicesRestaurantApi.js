@@ -9,7 +9,7 @@ export async function getPizzas() {
 
 export async function postUser(userData) {
   try {
-    const response = await fetch(`${url}/users`, {
+    const response = await fetch(`${url}/orders`, {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(userData),
@@ -25,4 +25,12 @@ export async function postUser(userData) {
 
     return { success: false, message: "Faild to submit customer data. Please try again later." };
   }
+}
+
+export async function getOrder(id) {
+  const response = await fetch(`${url}/orders/${id}`);
+  if (!response.ok) throw new Error("Faild fetching Order data!");
+
+  const order = await response.json();
+  return order;
 }
