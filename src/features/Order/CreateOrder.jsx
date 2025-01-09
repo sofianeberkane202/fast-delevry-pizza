@@ -1,16 +1,33 @@
 import { useSelector } from "react-redux";
 import Button from "../../ui/Button";
 import { getName } from "../User/reducerUserSlice";
-import { Form } from "react-router-dom";
+import { Form, redirect } from "react-router-dom";
 import { getBillOfTotalPrice, getCart } from "../Cart/reducerCartSlice";
 import { postUser } from "../../services/servicesRestaurantApi";
+import { useState } from "react";
+import { calcTotalPriceWithPriority } from "../../utilities/helper";
 /* eslint-disable react/react-in-jsx-scope */
 const phoneRegex = /^\+?[0-9]{1,3}?[-.\s]?(\(?[0-9]{1,4}?\)?[-.\s]?){1,4}[0-9]{1,4}$/;
 
 function CreateOrder() {
   const name = useSelector((state) => getName(state));
-  const billTotalPrice = useSelector((state) => getBillOfTotalPrice(state));
+  let billTotalPrice = useSelector((state) => getBillOfTotalPrice(state));
   const cart = useSelector((state) => getCart(state));
+
+  let priorityPrice = 0;
+
+  const [isPriority, setIsPriority] = useState(false);
+
+  function handelPriority() {
+    setIsPriority(!isPriority);
+  }
+
+  if (isPriority) {
+    const { totalPrice, priorityPrice: p } = calcTotalPriceWithPriority(isPriority, billTotalPrice);
+    billTotalPrice = totalPrice;
+    priorityPrice = p;
+  }
+
   return (
     <div className="mt:3 py-2 sm:mt-4">
       <h1 className="mb-4 text-lg font-semibold sm:mb-6 sm:text-xl">Ready to order? Let&apos;s go!</h1>
@@ -64,9 +81,12 @@ function CreateOrder() {
             type="checkbox"
             name="priority"
             id="priority"
+            value={isPriority}
+            onChange={() => handelPriority()}
           />
           <span className="text-sm sm:text-base">Want to yo give your order priority?</span>
           <input type="hidden" value={billTotalPrice} name="totalPrice" />
+          <input type="hidden" value={priorityPrice} name="priorityPrice" />
           <input type="hidden" value={JSON.stringify(cart)} name="cart" />
         </label>
 
@@ -82,16 +102,25 @@ export async function action({ request }) {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
 
+  console.log(data.priority);
+
   if (!phoneRegex.test(data.phoneNumber)) return;
 
   const newCustomer = {
     ...data,
-    priority: data.priority === "on",
+    priority: data.priority === "true",
   };
 
-  const result = await postUser(newCustomer);
+  try {
+    // Send customer data to the server
+    const result = await postUser(newCustomer);
 
-  console.log(result);
+    // Return a redirect to the order page with the new customer ID
+    return redirect(`/order/${result.data.id}`);
+  } catch (error) {
+    console.error("Error posting user:", error);
+    return { error: "Failed to create order" }; // Handle errors gracefully
+  }
 }
 
 export default CreateOrder;
