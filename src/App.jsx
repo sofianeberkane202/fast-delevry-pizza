@@ -12,6 +12,7 @@ import { action as formNewOrder } from "./features/Order/CreateOrder";
 import AppLayout from "./ui/AppLayout";
 
 import { loader as loaderMenu } from "./features/Menu/MenuPage";
+// import Error from "./features/Order/Error";
 
 /* eslint-disable react/react-in-jsx-scope */
 function App() {
@@ -36,6 +37,7 @@ function App() {
           path: "order/new",
           element: <CreateOrder />,
           action: formNewOrder,
+          errorElement: <CreateOrder />,
         },
         {
           path: "order/:id",
