@@ -2,7 +2,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./ui/HomePage";
 import MenuPage from "./features/Menu/MenuPage";
 import CartPage from "./features/Cart/CartPage";
+
 import OrderPage from "./features/Order/OrderPage";
+import { loader as loaderOrder } from "./features/Order/OrderPage";
 
 import CreateOrder from "./features/Order/CreateOrder";
 import { action as formNewOrder } from "./features/Order/CreateOrder";
@@ -38,6 +40,7 @@ function App() {
         {
           path: "order/:id",
           element: <OrderPage />,
+          loader: loaderOrder,
         },
       ],
     },
