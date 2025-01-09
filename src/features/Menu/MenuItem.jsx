@@ -69,7 +69,7 @@ export default MenuItem;
 
 MenuItem.propTypes = {
   pizza: PropTypes.shape({
-    id: PropTypes.number,
+    id: PropTypes.string,
     name: PropTypes.string,
     unitPrice: PropTypes.number,
     imageUrl: PropTypes.string,
