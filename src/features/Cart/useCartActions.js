@@ -17,10 +17,11 @@ function useCartActions({ id, newItem }) {
   }
 
   function handleAddItemToCart() {
-    const { name, unitPrice, id } = newItem;
+    const { id, name, unitPrice, ingredients } = newItem;
     const item = {
       pizzaId: +id,
       name,
+      ingredients,
       unitPrice,
       quantity: 1,
       totalPrice: unitPrice * 1,
