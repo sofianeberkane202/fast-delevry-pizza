@@ -2,6 +2,9 @@
 import PropTypes from "prop-types";
 import { getOrder } from "../../services/servicesRestaurantApi";
 import { useLoaderData } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { clearCart, getCart } from "../Cart/reducerCartSlice";
+import { useEffect } from "react";
 
 // const fakeCart = [
 //   {
@@ -41,8 +44,19 @@ import { useLoaderData } from "react-router-dom";
 
 function OrderPage() {
   // const order = fakeOrder;
-
   const data = useLoaderData();
+
+  const dispatch = useDispatch();
+  const cart = useSelector((state) => getCart(state));
+
+  useEffect(
+    function () {
+      if (cart.length) {
+        dispatch(clearCart());
+      }
+    },
+    [cart.length],
+  );
 
   const order = {
     ...data,
@@ -50,6 +64,7 @@ function OrderPage() {
     totalPrice: +data.totalPrice,
     priorityPrice: +data.priorityPrice,
   };
+
   return (
     <div className="mb-2 mt-4 grid gap-6 xs:mt-8 sm:gap-8">
       <div className="flex flex-col-reverse items-center justify-between gap-4 sm:flex-row sm:gap-0">
@@ -71,7 +86,7 @@ function OrderPage() {
         <p className="text-xs text-stone-500">(Estimated delivery: Jan 8, 04:58 PM)</p>
       </div>
 
-      <ul className="h-44 divide-y-2 divide-stone-200 overflow-y-auto px-2">
+      <ul className="max-h-44 divide-y-2 divide-stone-200 overflow-y-auto px-2">
         {order.cart.map((item) => (
           <CartItem key={item.pizzaId} item={item} />
         ))}
