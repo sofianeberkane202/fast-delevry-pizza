@@ -1,15 +1,17 @@
 import { useSelector } from "react-redux";
 import Button from "../../ui/Button";
 import { getName } from "../User/reducerUserSlice";
-import { Form, redirect } from "react-router-dom";
+import { Form, redirect, useNavigation, useRouteError } from "react-router-dom";
 import { getBillOfTotalPrice, getCart } from "../Cart/reducerCartSlice";
 import { postUser } from "../../services/servicesRestaurantApi";
 import { useState } from "react";
-import { calcTotalPriceWithPriority } from "../../utilities/helper";
+import { calcTotalPriceWithPriority, phoneValidation } from "../../utilities/helper";
+import Error from "./Error";
 /* eslint-disable react/react-in-jsx-scope */
-const phoneRegex = /^\+?[0-9]{1,3}?[-.\s]?(\(?[0-9]{1,4}?\)?[-.\s]?){1,4}[0-9]{1,4}$/;
 
 function CreateOrder() {
+  const { state } = useNavigation();
+
   const name = useSelector((state) => getName(state));
   let billTotalPrice = useSelector((state) => getBillOfTotalPrice(state));
   const cart = useSelector((state) => getCart(state));
@@ -17,6 +19,10 @@ function CreateOrder() {
   let priorityPrice = 0;
 
   const [isPriority, setIsPriority] = useState(false);
+
+  const error = useRouteError();
+  const errorMessage = error?.data || "";
+  const errorStatus = error?.status || null;
 
   function handelPriority() {
     setIsPriority(!isPriority);
@@ -47,18 +53,21 @@ function CreateOrder() {
           />
         </div>
 
-        <div className="flex items-center justify-between">
-          <label className="hidden basis-40 capitalize sm:inline-block" htmlFor="phone">
+        <div className={`flex ${errorMessage ? "items-start" : "items-center"} justify-between`}>
+          <label className={`hidden basis-40 capitalize sm:inline-block ${errorMessage ? "pt-2" : ""}`} htmlFor="phone">
             phone number
           </label>
-          <input
-            required
-            placeholder="phone number"
-            className="input py-2 placeholder:text-xs placeholder:capitalize sm:placeholder:opacity-0"
-            type="tel"
-            name="phoneNumber"
-            id="phone"
-          />
+          <div className="grid flex-1">
+            <input
+              required
+              placeholder="phone number"
+              className="input py-2 placeholder:text-xs placeholder:capitalize sm:placeholder:opacity-0"
+              type="tel"
+              name="phoneNumber"
+              id="phone"
+            />
+            {errorMessage && <Error message={errorMessage} status={errorStatus} />}
+          </div>
         </div>
 
         <div className="flex items-center justify-between">
@@ -91,7 +100,13 @@ function CreateOrder() {
         </label>
 
         <div className="mt-4 sm:mt-6">
-          <Button type={"primary"}>order now for &euro;{Number(billTotalPrice).toFixed(2)}</Button>
+          <Button type={"primary"}>
+            {state === "submitting" ? (
+              <span>Loading...</span>
+            ) : (
+              <span>order now for &euro;{Number(billTotalPrice).toFixed(2)}</span>
+            )}
+          </Button>
         </div>
       </Form>
     </div>
@@ -102,9 +117,8 @@ export async function action({ request }) {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
 
-  console.log(data.priority);
-
-  if (!phoneRegex.test(data.phoneNumber)) return;
+  if (!phoneValidation(data.phoneNumber))
+    throw new Response("Please give us your correct phone number, We might need to contact you.", { status: 400 });
 
   const newCustomer = {
     ...data,
@@ -119,7 +133,7 @@ export async function action({ request }) {
     return redirect(`/order/${result.data.id}`);
   } catch (error) {
     console.error("Error posting user:", error);
-    return { error: "Failed to create order" }; // Handle errors gracefully
+    throw new Response("Failed to create order", { status: 500 });
   }
 }
 
